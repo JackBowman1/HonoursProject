@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels"
+             x:Class="HonoursProject.Views.AddGoalPage"
+             xmlns:magic="clr-namespace:MagicGradients;assembly=MagicGradients"
+             Title="Add Your own goal">
+    <ContentPage.BindingContext>
+        <viewModel:AddGoalViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <magic:GradientView>
+                <magic:GradientView.GradientSource>
+                    <magic:LinearGradient Angle="90">
+                        <magic:GradientStop Color="Blue" Offset="1" />
+                        <magic:GradientStop Color="MediumBlue" Offset="0" />
+                    </magic:LinearGradient>
+                </magic:GradientView.GradientSource>
+            </magic:GradientView>
+            <StackLayout>
+            <Frame BorderColor="Gray" HorizontalOptions="Center" WidthRequest="300" HeightRequest="300" VerticalOptions="CenterAndExpand" CornerRadius="10" HasShadow="True">
+                <StackLayout>
+                    <Label Text="Enter your goal:"  HorizontalOptions="Center" FontSize="25" TextColor="DarkSlateBlue" Margin="0,50,0,10"/>
+                    <Entry Text="{Binding GoalName}" FontSize="Large" />
+                    <Button Text="Add Goal" Command="{Binding AddGoalCommand}" BackgroundColor="DarkBlue" HeightRequest="60" Margin="0,50,0,0" CornerRadius="20" FontAttributes="Bold" FontSize="Large"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

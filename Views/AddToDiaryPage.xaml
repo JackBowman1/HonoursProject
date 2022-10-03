@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels"
+             xmlns:model ="clr-namespace:HonoursProject.Models"
+             x:Class="HonoursProject.Views.AddToDiaryPage"
+             Title="Add an Entry to your Diary">
+    <ContentPage.BindingContext>
+        <viewModel:AddToDiaryViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <Frame BorderColor="DarkGray" Padding="5" Margin="5" CornerRadius="5">
+            <StackLayout Spacing="0" Padding="0">
+                <StackLayout>
+                    <Label Text ="Entry Title:" FontSize="Large" TextColor="DarkSlateBlue"/>
+                    <Entry Text="{Binding Title, Mode=TwoWay}"/>
+                    <Label Text="Entry:" FontSize="Large" TextColor="DarkSlateBlue"/>
+                    <Entry Text="{Binding Text, Mode=TwoWay}"/>
+                    <Label Text="How are you feeling?" FontSize="Large" TextColor="DarkSlateBlue"/>
+                    <Picker x:Name="MoodPicker" Title="How are you feeling?" ItemsSource="{Binding UserMoods}" SelectedItem="{Binding SelectedMood}"/>
+                </StackLayout>
+                <StackLayout Padding="10" HeightRequest="200">
+                    <Label Text="Select goals completed:" FontSize="Large"  TextColor="DarkSlateBlue" />
+                    <CollectionView ItemsSource="{Binding UserGoalList}" HeightRequest="200" x:Name="goalsList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Spacing="0" Margin="0" Padding="0">
+                                    <Label Text="{Binding GoalName}" FontSize="Medium" TextColor="DarkBlue"/>
+                                    <CheckBox Color="DarkBlue" CheckedChanged="CheckBox_CheckedChanged" BindingContext="{Binding GoalName}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <StackLayout x:Name="emptyGoals">
+                        <StackLayout Margin="10" HorizontalOptions="Center">
+                            <Label Text="Currently no goals" TextColor="DarkSlateBlue"  FontSize="25" FontAttributes="Bold"/>
+                            <Label Text="If you wish to add goals you can do this by going to the edit details page" FontSize="Medium" TextColor="DarkSlateBlue"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <Button Text="Add Entry" BorderWidth="2" BorderColor="DarkBlue" BackgroundColor="White" TextColor="DarkBlue" FontAttributes="Bold" FontSize="Large" CornerRadius="20" Command ="{Binding AddEntryCommand}"/>
+            </StackLayout>
+        </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

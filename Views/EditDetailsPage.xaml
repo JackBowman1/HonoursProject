@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HonoursProject.Views.EditDetailsPage"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels"
+             Title="Edit Details">
+    <ContentPage.BindingContext>
+        <viewModel:EditDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame CornerRadius="10" Margin="10" BorderColor="DarkGray">
+            <StackLayout>
+            <Label Text="First Name:" FontSize="Large" TextColor="DarkSlateBlue"/>
+            <Entry Text="{Binding FirstName, Mode=TwoWay}" FontSize="Medium"/>
+            <Label Text="Last Name:" FontSize="Large" TextColor="DarkSlateBlue"/>
+            <Entry Text="{Binding LastName, Mode=TwoWay}" FontSize="Medium"/>
+                <Label Text="Your current Goals:" FontSize="Large" TextColor="DarkSlateBlue"/>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout x:Name="notEmptyGoalDisplay">
+                        <CollectionView ItemsSource="{Binding CurrentGoals}" HeightRequest="400">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout>
+                                        <Label Text="{Binding GoalName, Mode=TwoWay}" FontSize="Medium"/>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <CheckBox BindingContext="{Binding Id}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    <StackLayout x:Name="emptyGoalDisplayEditDetails">
+                        <Frame BorderColor="Gray">
+                            <Label Text="Currently no goals" FontSize="Large" TextColor="DarkBlue"/>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Button Text="Add more goals" WidthRequest="100" FontAttributes="Bold" FontSize="Medium" BackgroundColor="MediumBlue" CornerRadius="5" TextColor="White"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button Text="Change Password?" Command="{Binding ChangePassword}" BackgroundColor="White" TextColor="DarkBlue" BorderColor="DarkBlue" FontAttributes="Bold" BorderWidth="4" FontSize="Medium"/>
+                    <Button Text="Change details"  FontSize="Medium"  FontAttributes="Bold" BackgroundColor="DarkBlue" Command="{Binding UpdateUser}"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

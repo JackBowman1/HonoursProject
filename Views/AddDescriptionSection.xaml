@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HonoursProject.Views.AddDescriptionSection"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels">
+    <ContentPage.BindingContext>
+        <viewModel:AddToInformationViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame BorderColor="Gray" HasShadow="True" Margin="10" CornerRadius="20">
+            <StackLayout Spacing="3" Padding="5">
+                <Label Text="Main Section" FontAttributes="Bold" FontSize="25" TextColor="DarkBlue" HorizontalOptions="Center"/>
+                <BoxView Color="DarkBlue" HeightRequest="5"/>
+                <StackLayout Padding="0,20,0,20">
+                    <Label Text ="Title:" FontSize="Large" TextColor="DarkBlue" FontAttributes="Italic"/>
+                    <Entry Placeholder="Title" Text="{Binding Name, Mode=TwoWay}"/>
+                    <Label Text="Discription: " FontSize="Large" TextColor="DarkBlue"/>
+                    <Entry Text="{Binding Description, Mode=TwoWay}" Placeholder="Description"/>
+                    <Label Text="Image:" FontSize="Large" TextColor="DarkBlue"/>
+                    <Entry Text="{Binding Image, Mode=TwoWay}" Placeholder="Enter image link here"/>
+                    <Button Text="Add information Page" FontSize="Medium" FontAttributes="Bold" Command="{Binding AddCommand}" BackgroundColor="DarkBlue" Margin="15" Padding="10" CornerRadius="15" VerticalOptions="Start"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HonoursProject.Views.EntryGoalsPage"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewModel:DiaryEntryGoalsViewModel/>
+    </ContentPage.BindingContext>
+    <Shell.BackButtonBehavior>
+    <BackButtonBehavior Command="{Binding BackButtonOvveride}"/>
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HonoursProject.Views.DiaryPage"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels"
+             Title="Diary Page"
+              xmlns:tool="http://xamarin.com/schemas/2020/toolkit"
+             BackgroundColor="WhiteSmoke">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add To Diary" Command="{Binding AddEntryCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewModel:DiaryViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView Command="{Binding LoadDiaryCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding DiaryEntryDisplay}" x:Name="UserView" >
+                    <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Frame BorderColor="Black" HasShadow="True" CornerRadius="50" BackgroundColor="{Binding Colour}">
+                                <StackLayout>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout VerticalOptions="EndAndExpand">
+                                                <Label Text="{Binding Title}" FontSize="25" FontAttributes="Bold" TextColor="White"/>
+                                            </StackLayout>
+                                                <StackLayout HorizontalOptions="EndAndExpand">
+                                                    <Image Source="{Binding Icon}" HeightRequest="60" WidthRequest="50" HorizontalOptions="EndAndExpand"  />
+                                                </StackLayout>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="2" BackgroundColor="White"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Padding="0,0,0,0" Margin="0,0,0,5">
+                                            <StackLayout Padding="0,0,0,5" HorizontalOptions="FillAndExpand" >
+                                                <Label Text="{Binding EntryDate}" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold" VerticalOptions="CenterAndExpand" TextColor="White"/>
+                                        </StackLayout>
+                                        <BoxView WidthRequest="2" BackgroundColor="White"/>
+                                        <StackLayout HorizontalOptions="FillAndExpand" WidthRequest="200">
+                                     
+                                            <Frame HorizontalOptions="FillAndExpand" BorderColor="White" CornerRadius="3" HeightRequest="50">
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.DetailedEntry, Source={x:Reference UserView}}" CommandParameter="{Binding .}" />
+                                                    <!--<Button Text="Delete section" TextColor="Red" BackgroundColor="White" CornerRadius="10" BorderColor="Red" BorderWidth="3" Command="{Binding BindingContext.DeleteInformation, Source={x:Reference StaffView}}" CommandParameter="{Binding ID}" />-->
+                                                    </Frame.GestureRecognizers>
+                                                    <StackLayout  Orientation="Vertical" Padding="0" Spacing="0" Margin="0">
+                                                        <Label Text="{Binding Text}" MaxLines="2" LineBreakMode="TailTruncation" HorizontalTextAlignment="Center" TextColor="Black" FontSize="Medium"/>
+                                                </StackLayout> 
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <BoxView HeightRequest="2" BackgroundColor="White"/>
+                                    <Label Text="Goals Completed: " FontSize="Large" FontAttributes="Bold" TextColor="White"/>
+                                    <CollectionView ItemsSource="{Binding UserGoalList}" HeightRequest="150">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Padding="3" Orientation="Horizontal">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding GoalName}" FontSize="Medium" TextColor="White"/>
+                                                    </StackLayout>
+                                                    <CheckBox  IsChecked="True" Color="LightGreen" IsEnabled="False"/>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Header>
+                    <StackLayout>
+                        <StackLayout Padding="0,5,0,5">
+                            <Frame HasShadow="True" CornerRadius="10" BorderColor="DarkGray">
+                                <Label Text="{Binding DiaryName}" FontSize="25" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                            </Frame>
+                        </StackLayout>
+                        <Frame  x:Name="EmptyDiaryDisplay"  BorderColor="DarkGray" CornerRadius="10" Margin="10,30,10,0">
+                            <StackLayout BackgroundColor="White">
+                            <Label Text="Currently no diary entries"
+                                     TextColor="Black"
+                                     FontAttributes="Bold"
+                                     FontSize="30"   
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand" />
+                            <Label Text="Add to your diary to make your first entry!" HorizontalOptions="Center" FontSize="Medium"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </CollectionView.Header>
+            </CollectionView>
+            </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

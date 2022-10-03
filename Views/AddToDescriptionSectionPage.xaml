@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HonoursProject.Views.AddToDescriptionSectionPage"
+             xmlns:viewModel ="clr-namespace:HonoursProject.ViewModels"
+             Title="Add description section">
+    <ContentPage.BindingContext>
+        <viewModel:AddToDescriptionSectionViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame BorderColor="Gray" HasShadow="True" Margin="10" CornerRadius="20">
+            <StackLayout Spacing="3" Padding="5">
+                <Label Text="Description section" FontAttributes="Bold" FontSize="25" TextColor="DarkBlue" HorizontalOptions="Center"/>
+                <BoxView Color="DarkBlue" HeightRequest="5"/>
+                <StackLayout Padding="0,20,0,20">
+                    <Label Text ="Section heading:" FontSize="Large" TextColor="DarkBlue" FontAttributes="Italic"/>
+                    <Entry Text="{Binding DescriptionHeading, Mode=TwoWay}"/>
+                    <Label Text="section text: " FontSize="Large" TextColor="DarkBlue"/>
+                    <Entry Text="{Binding DescriptionText, Mode=TwoWay}" Placeholder="Description"/>
+                    <Button Text="Add section and another" FontSize="Medium" FontAttributes="Bold" Command="{Binding AddSection}" BackgroundColor="DarkBlue" Margin="15" Padding="10" CornerRadius="15" VerticalOptions="Start"/>
+                    <Button Text="Add section and finish" FontSize="Medium" FontAttributes="Bold" Command="{Binding AddAndFinish}" BackgroundColor="DarkBlue" Margin="15" Padding="10" CornerRadius="15" VerticalOptions="Start"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
